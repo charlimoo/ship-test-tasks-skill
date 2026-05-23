@@ -33,3 +33,22 @@ Use the test skill to create Persian QA test tasks from the latest changes.
 ```
 
 The skill writes Persian plain-text task files to `.testcases` in the target project.
+
+## Publish Safely
+
+Do not put a GitHub password or token in chat, commit history, or a remote URL.
+
+Create an empty GitHub repository, then run:
+
+```powershell
+git remote add origin https://github.com/charlimoo/ship-test-tasks-skill.git
+git branch -M main
+git push -u origin main
+```
+
+If Git asks for authentication, use a GitHub personal access token in the password field, or authenticate with GitHub CLI:
+
+```powershell
+gh auth login
+gh repo create charlimoo/ship-test-tasks-skill --public --source . --remote origin --push
+```
