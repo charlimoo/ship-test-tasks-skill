@@ -1,6 +1,6 @@
 interface:
-  display_name: "Testcase QA"
-  short_description: "Manage Testcase QA commands"
+  display_name: "Testcase Commands"
+  short_description: "Run /test, /bugfix, /creds"
   default_prompt: "Use $test to run /test, /bugfix, or /creds with the internal Testcase app."
 
 policy:
