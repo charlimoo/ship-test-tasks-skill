@@ -1,54 +1,23 @@
 # Test Skill
 
-Portable Agent Skill for creating Persian QA handoff tasks from code changes.
+Portable Agent Skill for creating and managing Persian QA work in the internal Testcase app.
 
 ## Layout
 
-- `SKILL.md`: canonical single-skill entrypoint for tools that install a skill repository directly.
-- `skills/test/SKILL.md`: plugin/shared-skill layout.
-- `.claude/skills/test/SKILL.md`: Claude Code project-skill layout, invokable as `/test`.
-- `.agents/skills/test/SKILL.md`: agent workspace layout used by Codex-style setups.
-- `.codex/skills/test/SKILL.md`: optional Codex project-skill copy for installers that scan this path.
+- `.agents/skills/test/SKILL.md`: canonical skill entrypoint for agent workspaces.
+- `.agents/skills/test/references/testcase-api.md`: standalone Testcase API reference for agents.
+- `.agents/skills/test/agents/openai.yaml`: OpenAI-facing display metadata and default command prompt.
 
-All copies intentionally contain the same skill text.
+The repository intentionally keeps only the `.agents` skill layout.
 
 ## Usage
-
-Claude Code:
-
-```text
-/test
-```
-
-With a range:
-
-```text
-/test from 1404-03-01 to 1404-03-02
-```
-
-Codex or other Agent Skills compatible tools:
 
 ```text
 Use the test skill to create Persian QA test tasks from the latest changes.
 ```
 
-The skill writes Persian plain-text task files to `.testcases` in the target project.
-
-## Publish Safely
-
-Do not put a GitHub password or token in chat, commit history, or a remote URL.
-
-Create an empty GitHub repository, then run:
-
-```powershell
-git remote add origin https://github.com/charlimoo/ship-test-tasks-skill.git
-git branch -M main
-git push -u origin main
+```text
+/test from 1404-03-01 to 1404-03-02
 ```
 
-If Git asks for authentication, use a GitHub personal access token in the password field, or authenticate with GitHub CLI:
-
-```powershell
-gh auth login
-gh repo create charlimoo/ship-test-tasks-skill --public --source . --remote origin --push
-```
+By default, the skill writes test cases into the Testcase app through its API. It only writes `.testcases/*.md` files when the user explicitly asks for markdown or file output.
